@@ -1,4 +1,4 @@
-Search mdns cache for machines advertising ssh, vnc, and rdp.
+Search mDNS cache for machines advertising ssh, vnc, and rdp.
 
 Tested in OSX.
 
