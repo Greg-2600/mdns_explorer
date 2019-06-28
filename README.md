@@ -5,4 +5,5 @@ Tested in OSX.
 Usage:
 
 chmod +x ./mdns_explorer.sh
+
 ./mdns_explorer.sh
