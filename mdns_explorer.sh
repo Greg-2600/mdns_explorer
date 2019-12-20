@@ -8,7 +8,9 @@
 services="ssh rfp ms-wbt-server"
  
 for service in $services; do
+
 	i=0
+
 	while read -r line; do
 		let i=$i+1
 
@@ -16,13 +18,17 @@ for service in $services; do
 			continue
 		fi
 
-		host=$(echo $line|grep [A-Z]|awk {'print $7".local"'})
-		echo $service $host
+		host=$(echo "$line"|grep "[A-Z]"|awk '{print $7".local"}')
 
-    		if [ $(echo $line|cut -d ' ' -f 3) -ne '3' ]; then
+		echo "$service $host"
+
+    		if [ "$(echo "$line"|cut -d ' ' -f 3)" -ne '3' ]; then
         		break
     		fi
+
 	done < <((sleep 0.5; 
-	pgrep -q dns-sd && kill -13 $(pgrep dns-sd)) & dns-sd -B _$service._tcp)
-	pgrep -q dns-sd && kill -13 $(pgrep dns-sd)
+
+	pgrep -q dns-sd && kill -13 "$(pgrep dns-sd)") & dns-sd -B _"$service"._tcp)
+	pgrep -q dns-sd && kill -13 "$(pgrep dns-sd)"
+
 done
